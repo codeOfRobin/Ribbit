@@ -13,6 +13,7 @@
 		7A5F12C019606D98003687E0 /* friends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5F12BA19606D98003687E0 /* friends@2x.png */; };
 		7A5F12C119606D98003687E0 /* inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5F12BB19606D98003687E0 /* inbox.png */; };
 		7A5F12C219606D98003687E0 /* inbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A5F12BC19606D98003687E0 /* inbox@2x.png */; };
+		7A5F12C519608652003687E0 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5F12C419608652003687E0 /* InboxViewController.m */; };
 		7A8464E819606B77009F3BA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8464E719606B77009F3BA1 /* Foundation.framework */; };
 		7A8464EA19606B77009F3BA1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8464E919606B77009F3BA1 /* CoreGraphics.framework */; };
 		7A8464EC19606B77009F3BA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8464EB19606B77009F3BA1 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 		7A5F12BA19606D98003687E0 /* friends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends@2x.png"; sourceTree = "<group>"; };
 		7A5F12BB19606D98003687E0 /* inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox.png; sourceTree = "<group>"; };
 		7A5F12BC19606D98003687E0 /* inbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox@2x.png"; sourceTree = "<group>"; };
+		7A5F12C319608651003687E0 /* InboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxViewController.h; sourceTree = "<group>"; };
+		7A5F12C419608652003687E0 /* InboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxViewController.m; sourceTree = "<group>"; };
 		7A8464E419606B77009F3BA1 /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A8464E719606B77009F3BA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7A8464E919606B77009F3BA1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,8 @@
 				7A84651619606B8A009F3BA1 /* Storyboard.storyboard */,
 				7A8464F619606B77009F3BA1 /* AppDelegate.h */,
 				7A8464F719606B77009F3BA1 /* AppDelegate.m */,
+				7A5F12C319608651003687E0 /* InboxViewController.h */,
+				7A5F12C419608652003687E0 /* InboxViewController.m */,
 				7A8464F919606B77009F3BA1 /* Images.xcassets */,
 				7A8464EE19606B77009F3BA1 /* Supporting Files */,
 			);
@@ -277,6 +282,7 @@
 			files = (
 				7A8464F819606B77009F3BA1 /* AppDelegate.m in Sources */,
 				7A8464F419606B77009F3BA1 /* main.m in Sources */,
+				7A5F12C519608652003687E0 /* InboxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
