@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="1287" y="1342"/>
         </scene>
-        <!--Table View Controller - Friends-->
+        <!--Friends Table View Controller - Friends-->
         <scene sceneID="9v9-pk-2Vn">
             <objects>
-                <tableViewController id="kiJ-fv-gdh" sceneMemberID="viewController">
+                <tableViewController id="kiJ-fv-gdh" customClass="friendsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2GA-Rc-YNq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,7 +152,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="GTf-rD-Efc">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="up1-fc-hq0">
                             <connections>
-                                <segue destination="eMj-YC-sBB" kind="push" id="xPk-IB-wXy"/>
+                                <segue destination="eMj-YC-sBB" kind="push" identifier="showEditFriends" id="xPk-IB-wXy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

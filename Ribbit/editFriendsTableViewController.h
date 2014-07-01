@@ -12,4 +12,6 @@
 @interface editFriendsTableViewController : UITableViewController
 @property (nonatomic,strong) NSArray *allUsers;
 @property (nonatomic,strong) PFUser *currentUser;
+-(BOOL)isFriend:(PFUser *) otherUser;
+@property (nonatomic,strong) NSMutableArray *friends;
 @end
