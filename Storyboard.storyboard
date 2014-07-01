@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="734" y="10"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="SnL-22-kbc">
             <objects>
-                <tableViewController id="KiY-Xj-fng" sceneMemberID="viewController">
+                <tableViewController id="KiY-Xj-fng" customClass="CameraViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lG9-2w-Z0y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

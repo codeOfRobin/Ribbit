@@ -28,6 +28,7 @@
 		7A84650D19606B77009F3BA1 /* RibbitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A84650C19606B77009F3BA1 /* RibbitTests.m */; };
 		7A84651719606B8A009F3BA1 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A84651619606B8A009F3BA1 /* Storyboard.storyboard */; };
 		7AD6C766196319A60098FCC0 /* friendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6C765196319A60098FCC0 /* friendsTableViewController.m */; };
+		7AD6C76919634C070098FCC0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD6C76819634C070098FCC0 /* CameraViewController.m */; };
 		7AD80AB01960A1E70041FA8C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD80AAF1960A1E70041FA8C /* Parse.framework */; };
 		7AD80ABA1960A2620041FA8C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD80AB11960A2620041FA8C /* AudioToolbox.framework */; };
 		7AD80ABB1960A2620041FA8C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD80AB21960A2620041FA8C /* CFNetwork.framework */; };
@@ -81,6 +82,8 @@
 		7A84651619606B8A009F3BA1 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
 		7AD6C764196319A60098FCC0 /* friendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendsTableViewController.h; sourceTree = "<group>"; };
 		7AD6C765196319A60098FCC0 /* friendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendsTableViewController.m; sourceTree = "<group>"; };
+		7AD6C76719634C070098FCC0 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		7AD6C76819634C070098FCC0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		7AD80AAF1960A1E70041FA8C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7AD80AB11960A2620041FA8C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7AD80AB21960A2620041FA8C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -195,6 +198,8 @@
 				7AD6C765196319A60098FCC0 /* friendsTableViewController.m */,
 				7AD80AC91961ABE30041FA8C /* editFriendsTableViewController.h */,
 				7AD80ACA1961ABE30041FA8C /* editFriendsTableViewController.m */,
+				7AD6C76719634C070098FCC0 /* CameraViewController.h */,
+				7AD6C76819634C070098FCC0 /* CameraViewController.m */,
 				7AD80AC31960A5F10041FA8C /* LoginViewController.h */,
 				7AD80AC41960A5F10041FA8C /* LoginViewController.m */,
 				7AD80AC61960A6050041FA8C /* SignUpViewController.h */,
@@ -341,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AD80AC51960A5F10041FA8C /* LoginViewController.m in Sources */,
+				7AD6C76919634C070098FCC0 /* CameraViewController.m in Sources */,
 				7AD80AC81960A6050041FA8C /* SignUpViewController.m in Sources */,
 				7A8464F819606B77009F3BA1 /* AppDelegate.m in Sources */,
 				7A8464F419606B77009F3BA1 /* main.m in Sources */,

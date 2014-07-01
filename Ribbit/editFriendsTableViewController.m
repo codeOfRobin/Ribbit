@@ -15,15 +15,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
     PFQuery *query=[PFUser query];
     [query orderByAscending:@"username"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-       
+        
         if(error)
         {
             NSLog(@"%@",error.userInfo);
@@ -32,14 +27,19 @@
         {
             self.allUsers=objects;
             [self.tableView reloadData];
-
+            
         }
     }];
     
-
+    
     
     self.currentUser=[PFUser currentUser];
- 
+    
+
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 
@@ -123,6 +123,7 @@
             NSLog(@" Erir %@",error.userInfo);
         }
     }];
+    
     
     
     

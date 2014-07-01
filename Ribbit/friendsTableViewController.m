@@ -14,10 +14,9 @@
 @implementation friendsTableViewController
 
 
-
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:YES];
     self.friendsRelation=[[PFUser currentUser] objectForKey:@"friendsRelation"];
     PFQuery *query=[self.friendsRelation query];
     [query orderByAscending:@"username"];
@@ -33,6 +32,11 @@
         }
     }];
     
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+ 
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
