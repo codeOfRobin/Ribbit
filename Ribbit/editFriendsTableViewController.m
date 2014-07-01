@@ -7,7 +7,6 @@
 //
 
 #import "editFriendsTableViewController.h"
-#import <Parse/Parse.h>
 @interface editFriendsTableViewController ()
 
 @end
@@ -34,6 +33,7 @@
         }
     }];
     
+    self.currentUser=[PFUser currentUser];
  
 }
 
@@ -62,10 +62,19 @@
 
 #pragma mark-Table view Delegate
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType=UITableViewCellAccessoryCheckmark;
-    
+    PFRelation *friendsRelation=[self.currentUser relationForKey:@"friendsRelation"];
+    PFUser *user=[self.allUsers objectAtIndex:indexPath.row];
+    [friendsRelation addObject:user];
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error)
+        {
+            NSLog(@" Erir %@",error.userInfo);
+        }
+    }];
 }
 @end
