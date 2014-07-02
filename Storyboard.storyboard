@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="734" y="10"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Camera View Controller - Recipients-->
         <scene sceneID="SnL-22-kbc">
             <objects>
                 <tableViewController id="KiY-Xj-fng" customClass="CameraViewController" sceneMemberID="viewController">
@@ -120,7 +120,7 @@
                             <outlet property="delegate" destination="KiY-Xj-fng" id="3IN-uL-eu8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="LeE-I9-Rmy"/>
+                    <navigationItem key="navigationItem" title="Recipients" id="LeE-I9-Rmy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBJ-39-3GB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

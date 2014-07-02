@@ -10,4 +10,6 @@
 
 @interface CameraViewController : UITableViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImagePickerController *imagePicker;
+@property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) NSString *videoFilePath;
 @end
