@@ -24,6 +24,22 @@
 {
     [super viewWillAppear:YES];
     
+    self.friendsRelation=[[PFUser currentUser] objectForKey:@"friendsRelation"];
+    PFQuery *query=[self.friendsRelation query];
+    [query orderByAscending:@"username"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error)
+        {
+            NSLog(@"%@",error.userInfo);
+        }
+        else
+        {
+            self.friends=objects;
+            [self.tableView reloadData];
+        }
+    }];
+
+    
     self.imagePicker=[[UIImagePickerController alloc] init];
     self.imagePicker.delegate=self;
     self.imagePicker.allowsEditing=NO;
@@ -49,7 +65,7 @@
 {
     [super viewDidLoad];
     
-
+    self.recipients=[[NSMutableArray alloc]init ];
 
 }
 
@@ -59,26 +75,57 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [self.friends count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    PFUser *friend=[self.friends objectAtIndex:indexPath.row];
+    cell.textLabel.text=friend.username;
+    if ([self.recipients containsObject:friend])
+    {
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType=UITableViewCellAccessoryNone;
+    }
     // Configure the cell...
     
     return cell;
 }
-*/
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    PFUser *user=[self.friends objectAtIndex:indexPath.row];
+    if (cell.accessoryType==UITableViewCellAccessoryNone)
+    {
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        
+        [self.recipients addObject:user];
+    }
+    else
+    {
+        cell.accessoryType=UITableViewCellAccessoryNone;
+        [self.recipients removeObject:user];
+    }
+}
+
+- (IBAction)cancel:(id)sender {
+}
+
+- (IBAction)send:(id)sender {
+}
 
 /*
 #pragma mark - Navigation

@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Lnp-RB-bd3">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Lnp-RB-bd3">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lnp-RB-bd3" id="CQP-pY-Nen">
@@ -120,7 +120,18 @@
                             <outlet property="delegate" destination="KiY-Xj-fng" id="3IN-uL-eu8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recipients" id="LeE-I9-Rmy"/>
+                    <navigationItem key="navigationItem" title="Recipients" id="LeE-I9-Rmy">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="lKZ-wr-cdY">
+                            <connections>
+                                <action selector="cancel:" destination="KiY-Xj-fng" id="XBK-Y6-8We"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="jwc-e6-5wq">
+                            <connections>
+                                <action selector="send:" destination="KiY-Xj-fng" id="Iwa-lT-0V5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBJ-39-3GB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
