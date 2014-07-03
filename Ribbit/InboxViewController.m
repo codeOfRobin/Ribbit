@@ -20,6 +20,27 @@
     [self performSegueWithIdentifier:@"showLogin" sender:self];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    PFQuery *query=[[PFQuery alloc] initWithClassName:@"Messages"];
+    NSLog(@"%@",[[PFUser currentUser] objectId]);
+    [query whereKey:@"recipientIDs" containsString:[[PFUser currentUser] objectId]];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error)
+        {
+            NSLog(@"%@",error.userInfo);
+        }
+        else
+        {
+            self.messages=[[NSArray alloc] initWithArray:objects];
+            [self.tableView reloadData];
+            NSLog(@"%lu",(unsigned long)[_messages count]);
+        }
+        
+    }];
+}
 
 - (void)viewDidLoad
 {
@@ -42,16 +63,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [_messages count];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -61,16 +80,17 @@
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
 }
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    PFObject *message=[self.messages objectAtIndex:indexPath.row];
+    cell.textLabel.text=[message objectForKey:@"senderName"];
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

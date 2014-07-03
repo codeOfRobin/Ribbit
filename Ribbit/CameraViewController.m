@@ -40,26 +40,28 @@
         }
     }];
 
-    
-    self.imagePicker=[[UIImagePickerController alloc] init];
-    self.imagePicker.delegate=self;
-    self.imagePicker.allowsEditing=NO;
-    self.imagePicker.videoMaximumDuration=10;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    if (self.image==nil && [self.videoFilePath length]==0)
     {
-        self.imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
+        self.imagePicker=[[UIImagePickerController alloc] init];
+        self.imagePicker.delegate=self;
+        self.imagePicker.allowsEditing=NO;
+        self.imagePicker.videoMaximumDuration=10;
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            self.imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
+            
+        }
+        else
+        {
+            self.imagePicker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+            
+        }
         
+        self.imagePicker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:self.imagePicker.sourceType];
+        [self presentViewController:self.imagePicker animated:NO completion:^{
+            
+        }];
     }
-    else
-    {
-        self.imagePicker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-        
-    }
-    
-    self.imagePicker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:self.imagePicker.sourceType];
-    [self presentViewController:self.imagePicker animated:NO completion:^{
-        
-    }];
 
 }
 - (void)viewDidLoad
@@ -113,12 +115,12 @@
     {
         cell.accessoryType=UITableViewCellAccessoryCheckmark;
         
-        [self.recipients addObject:user];
+        [self.recipients addObject:user.objectId];
     }
     else
     {
         cell.accessoryType=UITableViewCellAccessoryNone;
-        [self.recipients removeObject:user];
+        [self.recipients removeObject:user.objectId];
     }
 }
 
@@ -149,9 +151,10 @@
     else
     {
         [self uploadMessage];
-        [self reset];
+      
 
         [self.tabBarController setSelectedIndex:0];
+        
     }
 }
 
@@ -159,11 +162,57 @@
 
 -(void)uploadMessage
 {
+    NSData *fileData;
+    NSString *fileName;
+    NSString *fileType;
     if (self.image!=nil)
     {
         CGRect rect= [[UIScreen mainScreen]bounds];
         UIImage *newImage=[self resizeImage:self.image toHeight:rect.size.height andWidth:rect.size.width];
+        fileData=UIImagePNGRepresentation(newImage);
+        fileName=@"image.png";
+        fileType=@"image";
     }
+    
+    else
+    {
+        fileData=[NSData dataWithContentsOfFile:self.videoFilePath];
+        fileName=@"video.mov";
+        fileType=@"video";
+        
+    }
+    
+    PFFile *file=[PFFile fileWithName:fileName data:fileData];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error)
+        {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"oops" message:@"please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+        else
+        {
+            PFObject *message=[PFObject objectWithClassName:@"Message"];
+            [message setObject:file forKey:@"file"];
+            [message setObject:fileType forKey:@"fileType"];
+            [message setObject:self.recipients forKey:@"recipientIDs"];
+            [message setObject:[[PFUser currentUser]objectId] forKey:@"senderID"];
+            [message setObject:[[PFUser currentUser]username ] forKey:@"senderUsername"];
+            [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error)
+                {
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"oops" message:@"please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                }
+                
+                else
+                {
+                    [self reset];
+                }
+            }];
+            
+        }
+    }];
 }
 
 -(UIImage *)resizeImage:(UIImage *)image toHeight:(float)height andWidth:(float)width
