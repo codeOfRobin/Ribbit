@@ -20,6 +20,7 @@
     
 }
 
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -121,11 +122,61 @@
     }
 }
 
-- (IBAction)cancel:(id)sender {
+#pragma mark-Send and cancel methods
+
+- (void)reset
+{
+    self.image=nil;
+    self.videoFilePath=nil;
+    [self.recipients removeAllObjects];
 }
 
-- (IBAction)send:(id)sender {
+- (IBAction)cancel:(id)sender
+{
+    [self reset];
+    [self.tabBarController setSelectedIndex:0];
 }
+
+- (IBAction)send:(id)sender
+{
+    if (self.image==nil && [self.videoFilePath length]==0)
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"oops" message:@"please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        
+        [self presentViewController:self.imagePicker animated:YES completion:nil];
+    }
+    else
+    {
+        [self uploadMessage];
+        [self reset];
+
+        [self.tabBarController setSelectedIndex:0];
+    }
+}
+
+#pragma mark-Helper
+
+-(void)uploadMessage
+{
+    if (self.image!=nil)
+    {
+        CGRect rect= [[UIScreen mainScreen]bounds];
+        UIImage *newImage=[self resizeImage:self.image toHeight:rect.size.height andWidth:rect.size.width];
+    }
+}
+
+-(UIImage *)resizeImage:(UIImage *)image toHeight:(float)height andWidth:(float)width
+{
+    CGSize newSize=CGSizeMake(width, height);
+    CGRect newRect=CGRectMake(0, 0, width, height);
+    UIGraphicsBeginImageContext(newSize);
+    [self.image drawInRect:newRect];
+    UIImage *resizedImage=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resizedImage;
+}
+
 
 /*
 #pragma mark - Navigation
